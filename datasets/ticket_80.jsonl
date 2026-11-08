@@ -1,0 +1,80 @@
+{"id": "ticket_001", "input": "打印机报错 0x0000011b，Windows 11", "expected_category": "hardware", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11", "error_message": "0x0000011b"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_002", "input": "办公电脑蓝屏，Windows 10，错误 0x0000007B", "expected_category": "hardware", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_003", "input": "笔记本电池鼓包，办公电脑", "expected_category": "hardware", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_004", "input": "打印机坏了", "expected_category": "hardware", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_005", "input": "显示器不亮，公司电脑，今天开会要用", "expected_category": "hardware", "expected_priority": "P2", "expected_fields": {"environment": "公司电脑"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_006", "input": "投影仪无法连接，会议室，今天客户来访", "expected_category": "hardware", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_007", "input": "扫描仪驱动安装失败，Windows 11，错误 0x80070005", "expected_category": "hardware", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11", "error_message": "0x80070005"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_008", "input": "键盘部分按键失灵，Windows 11", "expected_category": "hardware", "expected_priority": "P3", "expected_fields": {"environment": "Windows 11"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_009", "input": "鼠标无法连接，蓝牙，办公电脑", "expected_category": "hardware", "expected_priority": "P3", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_010", "input": "打印机卡纸，有临时替代打印机", "expected_category": "hardware", "expected_priority": "P3", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_011", "input": "整层楼多台打印机无法打印", "expected_category": "hardware", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_012", "input": "想了解公司推荐哪种外接显示器", "expected_category": "hardware", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_013", "input": "账号被锁定，无法登录，今天要用", "expected_category": "account_permission", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_014", "input": "忘记密码，无法登录公司账号", "expected_category": "account_permission", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_015", "input": "新员工账号未开通，明天入职", "expected_category": "account_permission", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_016", "input": "MFA 验证失败，Windows 11，错误 AADSTS50076", "expected_category": "account_permission", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11"}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_017", "input": "账号被停用，无法工作", "expected_category": "account_permission", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_018", "input": "需要重置服务账号密码，紧急", "expected_category": "account_permission", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_019", "input": "权限不足无法访问共享盘，Windows 10", "expected_category": "account_permission", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_020", "input": "多人都无法登录域账号，整个部门受影响", "expected_category": "account_permission", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_021", "input": "能否开通财务系统权限", "expected_category": "account_permission", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_022", "input": "想确认密码过期策略", "expected_category": "account_permission", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_023", "input": "账号登录后频繁被踢出，办公电脑", "expected_category": "account_permission", "expected_priority": "P3", "expected_fields": {"environment": "办公电脑"}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_024", "input": "VPN 连不上，Windows 11，提示证书无效", "expected_category": "network_vpn", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11", "error_message": "证书无效"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_025", "input": "多人无法连接 VPN，整个部门断网", "expected_category": "network_vpn", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_026", "input": "内网服务器无法访问，多台电脑受影响", "expected_category": "network_vpn", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_027", "input": "公司 WiFi 无法连接，手机", "expected_category": "network_vpn", "expected_priority": "P2", "expected_fields": {"environment": "手机"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_028", "input": "家里远程办公 VPN 频繁掉线，Windows 10", "expected_category": "network_vpn", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_029", "input": "DNS 解析失败，浏览器打不开内网，错误 DNS_PROBE_FINISHED_NXDOMAIN", "expected_category": "network_vpn", "expected_priority": "P2", "expected_fields": {"error_message": "DNS_PROBE_FINISHED_NXDOMAIN"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_030", "input": "VPN 客户端安装失败，Windows 11，错误 0x80070005", "expected_category": "network_vpn", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11", "error_message": "0x80070005"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_031", "input": "连接 VPN 后无法访问共享盘，办公电脑", "expected_category": "network_vpn", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_032", "input": "网络很慢，网页版可以用，临时有替代", "expected_category": "network_vpn", "expected_priority": "P3", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_033", "input": "代理设置错误，Windows 11", "expected_category": "network_vpn", "expected_priority": "P3", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_034", "input": "无线网络偶尔断连，手机和电脑", "expected_category": "network_vpn", "expected_priority": "P3", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_035", "input": "想咨询访客 WiFi 如何申请", "expected_category": "network_vpn", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_036", "input": "软件安装失败，Windows 11，错误 0x80070005", "expected_category": "software", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11", "error_message": "0x80070005"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_037", "input": "Office 客户端崩溃，Windows 10", "expected_category": "software", "expected_priority": "P2", "expected_fields": {"environment": "Windows 10"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_038", "input": "软件中心打不开，办公电脑", "expected_category": "software", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_039", "input": "卸载旧版软件后无法重装", "expected_category": "software", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_040", "input": "多台电脑无法打开同一业务客户端，核心业务中断", "expected_category": "software", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_041", "input": "许可证激活失败，Windows 11，错误 0x8007007B", "expected_category": "software", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11", "error_message": "0x8007007B"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_042", "input": "浏览器插件安装失败", "expected_category": "software", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_043", "input": "设计软件打开大文件崩溃，Windows 11", "expected_category": "software", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_044", "input": "客户端更新后界面卡死，有网页版替代", "expected_category": "software", "expected_priority": "P3", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_045", "input": "申请安装 Visio，能否开通", "expected_category": "software", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_046", "input": "想了解公司软件正版化建议", "expected_category": "software", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_047", "input": "申请采购软件许可，下周提交", "expected_category": "software", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_048", "input": "邮箱无法发送邮件，Windows 11，报错 550 5.7.1", "expected_category": "email_collaboration", "expected_priority": "P2", "expected_fields": {"environment": "Windows 11", "error_message": "550 5.7.1"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_049", "input": "Outlook 打不开，今天要发客户邮件", "expected_category": "email_collaboration", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_050", "input": "邮箱容量已满，无法接收新邮件，影响交付", "expected_category": "email_collaboration", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_051", "input": "多人收不到外部邮件，整个部门受影响", "expected_category": "email_collaboration", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_052", "input": "日历共享失败，Teams 会议无法创建", "expected_category": "email_collaboration", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_053", "input": "企业微信无法登录，无法工作", "expected_category": "email_collaboration", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_054", "input": "邮件附件下载失败，有网页版邮箱可用", "expected_category": "email_collaboration", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_055", "input": "日历邀请显示时区错误", "expected_category": "email_collaboration", "expected_priority": "P3", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_056", "input": "共享邮箱权限不足，Windows 10", "expected_category": "email_collaboration", "expected_priority": "P3", "expected_fields": {"environment": "Windows 10"}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_057", "input": "邮件规则误删，需要恢复", "expected_category": "email_collaboration", "expected_priority": "P3", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_058", "input": "想咨询邮箱签名规范", "expected_category": "email_collaboration", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_059", "input": "同事收到钓鱼邮件，账号可能被盗", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_060", "input": "电脑疑似中毒，文件被加密", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_061", "input": "多人收到勒索邮件，要求支付比特币", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_062", "input": "发现异常登录记录，来自境外 IP", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_063", "input": "U 盘插入后杀毒软件报警", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_064", "input": "公司数据疑似泄露到外部网盘", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_065", "input": "员工账号在异地登录，怀疑被盗", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_066", "input": "浏览器弹出可疑安全警告", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_067", "input": "收到冒充领导的转账邮件", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_068", "input": "服务器发现可疑进程，可能被入侵", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_069", "input": "共享账号密码疑似泄露，需要排查", "expected_category": "security_incident", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "IT 管理"}
+{"id": "ticket_070", "input": "门禁系统宕机，整个部门无法进入办公区", "expected_category": "other", "expected_priority": "P1", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_071", "input": "培训室白板笔缺失，今天培训要用", "expected_category": "other", "expected_priority": "P2", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_072", "input": "访客证如何办理", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_073", "input": "食堂今天几点开门", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_074", "input": "工位搬迁申请", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_075", "input": "想咨询停车位申请", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_076", "input": "门禁卡补办流程", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_077", "input": "办公用品申领", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_078", "input": "公司班车路线查询", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_079", "input": "想建议优化前台接待流程", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}
+{"id": "ticket_080", "input": "园区停车月卡如何续费", "expected_category": "other", "expected_priority": "P4", "expected_fields": {}, "expected_assignee_department": "桌面支持"}

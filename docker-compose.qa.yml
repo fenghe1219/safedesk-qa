@@ -1,0 +1,28 @@
+name: safedesk-qa
+
+services:
+  api-suite:
+    build:
+      context: .
+      dockerfile: infra/qa.Dockerfile
+    environment:
+      SAFEDESK_API_URL: http://api:8000
+      SAFEDESK_WEB_URL: http://web:3000
+      SAFEDESK_DEMO_PASSWORD: ${SAFEDESK_DEMO_PASSWORD:-Demo123!}
+      QA_REQUIRE_STACK: "1"
+    volumes:
+      - ./reports:/qa/reports
+    networks:
+      - safedesk
+    command:
+      - sh
+      - -c
+      - >-
+        mkdir -p reports/junit &&
+        python -m pytest tests/unit tests/api tests/eval -q
+        --junitxml=reports/junit/docker.xml
+
+networks:
+  safedesk:
+    external: true
+    name: safedesk_default

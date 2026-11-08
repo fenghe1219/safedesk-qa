@@ -1,0 +1,158 @@
+name: SafeDesk QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: safedesk-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SAFEDESK_API_URL: http://localhost:8000
+  SAFEDESK_WEB_URL: http://localhost:3000
+  SAFEDESK_DEMO_PASSWORD: Demo123!
+  QA_REQUIRE_STACK: "1"
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "24"
+
+jobs:
+  quality:
+    name: API + AI/RAG + UI
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout QA repository
+        uses: actions/checkout@v4
+
+      - name: Validate SafeDesk repository variable
+        run: |
+          if [ -z "${{ vars.SAFEDESK_REPOSITORY }}" ]; then
+            echo "::error::Set repository variable SAFEDESK_REPOSITORY, e.g. owner/SafeDesk"
+            exit 1
+          fi
+
+      - name: Checkout SafeDesk under test
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.SAFEDESK_REPOSITORY }}
+          path: .safedesk
+          token: ${{ secrets.SAFEDESK_CHECKOUT_TOKEN || github.token }}
+
+      - name: Start SafeDesk with Docker Compose
+        working-directory: .safedesk
+        run: |
+          cp .env.example .env
+          docker compose up -d --build --wait
+          docker compose ps
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install Python dev dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Lint QA code
+        run: ruff check qa tests scripts
+
+      - name: Wait for SafeDesk and verify seeded data
+        run: python scripts/check_stack.py --wait 120
+
+      - name: Unit and API contract tests
+        id: api
+        continue-on-error: true
+        run: |
+          mkdir -p reports/junit reports/allure/api
+          pytest tests/unit tests/api -m "not eval" -q \
+            --junitxml=reports/junit/api.xml \
+            --alluredir=reports/allure/api
+
+      - name: AI/RAG and security evaluation
+        id: eval
+        continue-on-error: true
+        run: |
+          mkdir -p reports/junit reports/allure/eval
+          pytest tests/eval -q -s \
+            --junitxml=reports/junit/eval.xml \
+            --alluredir=reports/allure/eval
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: ui/package-lock.json
+
+      - name: Install Playwright dependencies
+        working-directory: ui
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npx playwright install ffmpeg
+
+      - name: UI regression tests
+        id: ui
+        continue-on-error: true
+        working-directory: ui
+        run: |
+          mkdir -p ../reports/ui
+          npx playwright test
+
+      - name: Generate Allure report
+        if: always()
+        run: |
+          npm install -g allure-commandline@2
+          mkdir -p reports/allure/api reports/allure/eval
+          if find reports/allure -name '*-result.json' | grep -q .; then
+            allure generate reports/allure/api reports/allure/eval \
+              -o reports/allure/html --clean
+          else
+            echo "No Allure result files were produced."
+          fi
+
+      - name: Upload test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: safedesk-qa-evidence
+          path: |
+            reports/junit
+            reports/eval
+            reports/allure/html
+            ui/playwright-report
+            ui/test-results
+          if-no-files-found: warn
+
+      - name: Publish job summary
+        if: always()
+        run: |
+          {
+            echo "## SafeDesk QA"
+            echo ""
+            echo "- API: \`${{ steps.api.outcome }}\`"
+            echo "- AI/RAG: \`${{ steps.eval.outcome }}\`"
+            echo "- UI: \`${{ steps.ui.outcome }}\`"
+            echo ""
+            if [ -f reports/eval/latest.md ]; then
+              cat reports/eval/latest.md
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Enforce quality gates
+        if: always()
+        run: |
+          echo "API=${{ steps.api.outcome }} EVAL=${{ steps.eval.outcome }} UI=${{ steps.ui.outcome }}"
+          test "${{ steps.api.outcome }}" = "success"
+          test "${{ steps.eval.outcome }}" = "success"
+          test "${{ steps.ui.outcome }}" = "success"
+
+      - name: Stop SafeDesk stack
+        if: always()
+        working-directory: .safedesk
+        run: docker compose down -v

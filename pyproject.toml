@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "safedesk-qa"
+version = "0.1.0"
+description = "SafeDesk API, UI and AI/RAG quality engineering suite"
+requires-python = ">=3.12"
+dependencies = [
+  "httpx>=0.27,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9.0",
+  "pytest-timeout>=2.3,<3.0",
+  "allure-pytest>=2.13,<3.0",
+  "ruff>=0.7,<1.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["qa*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+  "api: black-box HTTP contract and integration tests",
+  "security: security, authorization and isolation tests",
+  "eval: independent AI/RAG quality evaluation",
+  "ui: Playwright browser tests (run from ui/)",
+  "unit: pure local tests without SafeDesk",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".venv", "ui/node_modules", "reports"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["E402"]

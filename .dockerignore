@@ -1,0 +1,15 @@
+.git
+.github
+.venv
+.env
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+allure
+docs
+reports
+ui/node_modules
+ui/test-results
+ui/playwright-report
+*.log
