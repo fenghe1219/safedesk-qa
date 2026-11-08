@@ -2,11 +2,23 @@
 
 ## 1. 当前状态
 
-GitHub Actions 工作流已经写入 `.github/workflows/qa.yml`，并在本地完成了静态审查和同构命令回归。**尚未在 GitHub 远程仓库实际触发**，因此本文不会声称已有绿色 CI 运行记录。
+GitHub Actions 工作流位于 `.github/workflows/qa.yml`，已于 2026-11-08 在公开仓库完成首次远程全绿运行（attempt #2）。
 
-当前可证明的是：
+| 项目 | 值 |
+| --- | --- |
+| 仓库 | `fenghe1219/safedesk-qa` |
+| 运行 | [attempt #2](https://github.com/fenghe1219/safedesk-qa/actions/runs/42464926683) |
+| Commit | `a8487d8` |
+| 结果 | `success` |
+| 运行时间 | 2026-11-08 09:55:48–09:59:54 UTC |
+| 总耗时 / Job 耗时 | 4m05s / 4m01s |
+| 测试门禁 | API `success`，AI/RAG `success`，UI `success` |
+| Artifact | `safedesk-qa-evidence`，1,480,441 bytes（1.41 MiB），1 个 |
+| 首次尝试 | attempt #1 因 `SAFEDESK_REPOSITORY` 未配置失败；配置变量后重跑成功 |
 
-- CI 所需的起栈、体检、四类测试、报告生成和产物上传步骤都已定义。
+远程运行可证明：
+
+- CI 从 QA 仓库和被测仓库检出开始，完成起栈、体检、四类测试、报告生成和 artifact 上传。
 - 本地可以使用相同命令和相同测试资产复现结果。
 - 工作流失败时会保留 JUnit、Allure、Playwright trace/截图/视频和评测 JSON/Markdown。
 
@@ -35,7 +47,7 @@ GitHub Actions 工作流已经写入 `.github/workflows/qa.yml`，并在本地�
 
 | 配置 | 类型 | 说明 |
 | --- | --- | --- |
-| `SAFEDESK_REPOSITORY` | Repository variable | 被测仓库，例如 `owner/SafeDesk`；缺失时工作流主动失败 |
+| `SAFEDESK_REPOSITORY` | Repository variable | 被测仓库，当前为 `fenghe1219/safedesk-agent`；缺失时工作流主动失败 |
 | `SAFEDESK_CHECKOUT_TOKEN` | Secret（可选） | 私有被测仓库的细粒度只读 Token；公开仓库可使用默认 `github.token` |
 
 演示账号密码默认 `Demo123!`，可通过工作流环境变量或 SafeDesk 的 `.env` 覆盖。
@@ -88,6 +100,8 @@ GitHub Actions 工作流已经写入 `.github/workflows/qa.yml`，并在本地�
 | Playwright 失败附件 | `ui/test-results/` | trace、截图、视频 |
 
 CI 的 `safedesk-qa-evidence` artifact 会打包上述目录。默认 `if-no-files-found: warn`，因此即使某个套件在生成报告前崩溃，也不会阻断其他证据上传。
+
+本次远程运行上传了 1 个 `safedesk-qa-evidence` artifact，大小为 1,480,441 bytes（1.41 MiB）。
 
 ## 6. 本地复现命令
 
@@ -146,12 +160,12 @@ Runner 会先创建 `reports/junit`，再执行单元、API 和评测，并把 J
 
 ## 8. 未验证项
 
-- 工作流尚未在 GitHub 远程环境实际执行。
+- 仅完成一次远程全绿运行，尚未验证多次提交下的稳定性、缓存命中和长期趋势。
 - 只使用 Chromium，没有 Firefox/WebKit 矩阵。
 - 没有 PostgreSQL 多版本矩阵。
 - 没有并发、容量、长稳和性能 SLA 任务。
 - 没有将真实模型 Provider 的超时、限流、非法 JSON 注入为 CI 故障场景。
 - 没有依赖安全扫描、镜像扫描和密钥扫描。
-- GitHub Actions 的运行时长、缓存命中和 artifact 大小需要在首次真实运行后校准。
+- GitHub Actions 的运行时长和 artifact 大小已校准；缓存命中情况仍需在后续运行中观察。
 
-首次远程运行后，应补充运行链接、耗时、artifact 大小和失败重试记录；在此之前保持“已配置、本地已验证、远程未运行”的准确表述。
+本次远程运行已补充运行链接、耗时、artifact 大小和首次失败重试记录。后续应持续记录新的全绿运行，避免把历史运行当作当前状态。

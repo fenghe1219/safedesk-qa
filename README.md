@@ -1,6 +1,8 @@
 # SafeDesk QA｜企业级 AI Agent 自动化测试与评测体系
 
-SafeDesk QA 是一个独立于被测系统的质量工程仓库。被测系统是 [SafeDesk](../SafeDesk)：一个包含六类角色、CSRF/Cookie 会话、Case/Ticket/Action/Approval 状态机、SSE 对话、RAG 检索、分层记忆和 Prompt 注入防护的企业服务台 Agent。
+[![SafeDesk QA](https://github.com/fenghe1219/safedesk-qa/actions/workflows/qa.yml/badge.svg)](https://github.com/fenghe1219/safedesk-qa/actions/workflows/qa.yml)
+
+SafeDesk QA 是一个独立于被测系统的质量工程仓库。被测系统是 [SafeDesk](https://github.com/fenghe1219/safedesk-agent)：一个包含六类角色、CSRF/Cookie 会话、Case/Ticket/Action/Approval 状态机、SSE 对话、RAG 检索、分层记忆和 Prompt 注入防护的企业服务台 Agent。
 
 本仓库不修改 SafeDesk 业务代码，也不直接导入其内部实现，而是通过 HTTP、浏览器和审计接口做黑盒验证。目标是证明的不只是“会写几个测试脚本”，而是能够搭建一套可重复执行、可定位问题、可量化 AI 质量并进入 CI 的测试体系。
 
@@ -15,6 +17,8 @@ SafeDesk QA 是一个独立于被测系统的质量工程仓库。被测系统�
 | CI/报告 | GitHub Actions + Docker Compose | 每次提交 | 起 PostgreSQL/API/Web、跑全量测试、上传 JUnit/Allure/Playwright 证据 |
 
 当前本机基线：**90 个 pytest 用例**（10 单元 + 76 API + 4 评测）与 **9 个 Playwright 用例**。API 为 72 passed + 4 strict xfail，UI 9 passed，评测 4 passed。
+
+远程 CI 基线：2026-11-08 的 [attempt #2](https://github.com/fenghe1219/safedesk-qa/actions/runs/42464926683) 全绿，API、AI/RAG、UI 与最终质量门禁均通过；总耗时 4 分 05 秒，证据 artifact 约 1.41 MiB。
 
 ## 快速开始
 
@@ -171,11 +175,11 @@ docker compose -f docker-compose.qa.yml run --rm api-suite
 6. 生成 Allure HTML、JUnit、评测报告与 Playwright trace/截图/视频。
 7. 通过 `continue-on-error` + 最终门禁步骤保证一个套件失败时其他套件仍执行，并让作业最终失败。
 
-> 当前状态：工作流已完成编写和本地同构命令验证，但尚未在 GitHub 远程仓库实际触发。仓库首次运行后，应补充运行链接和真实耗时。详细说明见 [CI 与证据链](docs/ci-evidence.md)。
+> 当前状态：远程 CI 已于 2026-11-08 全绿（[attempt #2](https://github.com/fenghe1219/safedesk-qa/actions/runs/42464926683)，4m05s；API、AI/RAG、UI 均为 `success`，artifact 1.41 MiB）。首次 attempt 因未配置 `SAFEDESK_REPOSITORY` 失败，配置变量后重跑通过。详细说明见 [CI 与证据链](docs/ci-evidence.md)。
 
 仓库配置项：
 
-- Repository variable `SAFEDESK_REPOSITORY`：例如 `owner/SafeDesk`。
+- Repository variable `SAFEDESK_REPOSITORY`：当前为 `fenghe1219/safedesk-agent`。
 - Secret `SAFEDESK_CHECKOUT_TOKEN`：SafeDesk 为私有仓库时使用细粒度只读 Token；公开仓库可省略。
 
 ## 目录结构
